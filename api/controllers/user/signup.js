@@ -14,8 +14,10 @@ module.exports = {
   async fn({ email, password }) {
     password = await sails.helpers.hash(password);
 
+    const signature = await AuthenticationService.login({ email });
+
     await User.create({ email, password });
 
-    return { email };
+    return { email, signature };
   },
 };
