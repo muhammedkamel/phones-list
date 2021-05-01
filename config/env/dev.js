@@ -70,6 +70,26 @@ module.exports = {
       *                                                                           *
       *************************************************************************** */
       // ssl: true,
+
+      // adapter: 'sails-mongo',
+      // url: 'mongodb://do:Passw0rd@localhost:27017/phones-list?authSource=admin',
+
+      adapter: 'sails-mongo',
+      host: 'localhost',
+      port: 27017,
+      database: 'phones-list',
+      user: 'do',
+      password: 'Passw0rd',
+      wlNext: {
+        caseSensitive: true,
+      },
+      socketOptions: {
+        noDelay: false,
+        keepAlive: 0,
+        connectTimeoutMS: 1000000,
+        socketTimeoutMS: 1000000,
+      },
+
     },
 
   },
