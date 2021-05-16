@@ -4,31 +4,22 @@ services:
     mongo-container:
         image: mongo
         environment:
-            - MONGO_INITDB_ROOT_USERNAME=do
+            - MONGO_INITDB_ROOT_USERNAME=test
             - MONGO_INITDB_ROOT_PASSWORD=Passw0rd
         ports:
-            - 27017
+            - 27017:27017
         volumes:
             - mongo-data:/data/db
             - mongo-config:/data/configdb
 
-    elastic-container:
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
-        environment:
-            - discovery.type=single-node
-            - node.name=es01
-            - cluster.name=es-docker-cluster
-            - bootstrap.memory_lock=true
-            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-        ports:
-            - 9200
-            - 9300
-        ulimits:
-            memlock:
-                soft: -1
-                hard: -1
-        volumes:
-            - es-data:/usr/share/elasticsearch/data
+    # elastic-container:
+    #     build: ./es
+    #     # ulimits:
+    #     #     memlock:
+    #     #         soft: -1
+    #     #         hard: -1
+    #     volumes:
+    #         - es-data:/usr/share/elasticsearch/data
 
 volumes:
     mongo-data:
